@@ -1,0 +1,53 @@
+Muck Rack Trial Project
+
+Hello and congrats! Thank you for all of your time spent with us so far, and for taking some more time to work on our trial project. We are excited to see what you come up with!
+
+Project background
+Muck Rack is a Django-powered SaaS running on AWS. We use Terraform to define and provision infrastructure, and AWS services like EC2, CodeDeploy, RDS, lambda functions, and more to deploy and scale our application. We use Github for version control, and rely on its actions for health and quality checks (think code quality checks, CI runs, etc) before deploying.
+
+For this project, we'd like you to define infrastructure similarly using Terraform, and deploy a simple database-backed Django application to AWS.
+
+Django sample project
+The app we wish for you to deploy is found here: https://github.com/muckrack-trial-projects/django-sample-app.
+
+This app exposes a single API endpoint that returns a count of objects from the database.
+
+Database DSN is expected to be provided via DATABASE_URL environment variable.
+
+API Endpoint
+/api/articles/count
+
+Response
+The API response should always return in the shape of:
+
+{ "count": <int> }
+and with a response code of 200 when requested with the appropriate Content-type: application/json header.
+
+A browser request should respond with the default Django REST Framework UI.
+
+Requirements
+Your submission should consist of two pieces:
+
+A Terraform configuration that will run the app on multiple instances behind a load balancer. Use the compute platform of your choice. Please push this back up to the provided Github repo.
+A URL showing your deployment. Providing the load balancer address is perfectly fine, please do not register a new domain for this. Please share this in Slack once you are ready for us to review.
+Please also add in Github anything else required to deploy, e.g., a Docker file if you choose to deploy a Docker container.
+
+Please stay within the "free" tier limits for AWS! If you are unable to do so, please reach out via Slack, and an account will be provisioned for you.
+
+How we evaluate
+Muck Rack's interviewing team should be able to successfully and without undocumented or unexpected setup run your submission in our own AWS environment.
+
+The URL you submit should return 200 OK, and the API response shape we expect.
+
+In reviewing your submission, we look for...
+
+Code that runs as documented and expected
+Follows Terraform and Github Actions coding conventions
+Shows consideration for readability and maintainability
+Is not overly complex
+This project should not take longer than 2-3 hours to complete.
+
+Tests are not strictly required, but are very appreciated.
+
+Communication
+You will be invited to a shared Slack channel by the recruiter you've been working with. Once you are in Slack, say hey! Please use this channel to ask any questions. Don't hesitate to ask, either: it's all very welcome, and we're here to help.
