@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -25,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-w9xqr%11!qht)l5#u#w4(h11+@kl=w)%t%q%3s0e$8v=c*@lw0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True if env == 'dev' else False
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'health_check',
+    'health_check.db',                          
     "rest_framework",
     "blog",
 ]
@@ -76,11 +79,12 @@ WSGI_APPLICATION = "mrsample.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+db_user = os.environ.get('db_user', 'dev@#User')
+db_pass = os.environ.get('db_pass', 'dev@#password')
+db_host = os.environ.get('db_host', '127.0.0.1')
+db_name = os.environ.get('db_name', 'testdb')
 
-DATABASES = {
-    "default": dj_database_url.config(),
-}
-
+DATABASES = {'default': dj_database_url.config(default=f"mysql://{db_user}:{db_pass}@{db_host}/{db_name}")}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
